@@ -11,7 +11,7 @@ git clone https://github.com/WalkingMachine/robotiq_c2_description.git
 ```
 Install
 ```
-apt-get install ros-kinetic-ros-control
+sudo apt-get install ros-kinetic-ros-control
 catkin_make
 ```
 Launch
