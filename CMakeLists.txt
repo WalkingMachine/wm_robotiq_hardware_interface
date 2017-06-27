@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(wm_robotiq_hardware_interface)
+project(wm_dynamixel_hardware_interface)
 SET(CMAKE_CXX_STANDARD 11)
 add_definitions(-std=c++11)
 
@@ -11,7 +11,6 @@ find_package(catkin REQUIRED COMPONENTS
     controller_manager
     hardware_interface
     roscpp
-    robotiq_c_model_control
 )
 
 ## System dependencies are found with CMake's conventions
@@ -38,7 +37,26 @@ include_directories(
 
 
 add_library(${PROJECT_NAME}
-        src/WMRobotiqHardwareInterface.cpp
+        src/WMDynamixelHardwareInterface.cpp
+        src/dynamixel_sdk/group_bulk_read.cpp
+        src/dynamixel_sdk/group_bulk_read.h
+        src/dynamixel_sdk/group_bulk_write.cpp
+        src/dynamixel_sdk/group_bulk_write.h
+        src/dynamixel_sdk/group_sync_read.cpp
+        src/dynamixel_sdk/group_sync_read.h
+        src/dynamixel_sdk/group_sync_write.cpp
+        src/dynamixel_sdk/group_sync_write.h
+        src/dynamixel_sdk/packet_handler.cpp
+        src/dynamixel_sdk/packet_handler.h
+        src/dynamixel_sdk/port_handler.cpp
+        src/dynamixel_sdk/port_handler.h
+        src/dynamixel_sdk/port_handler_linux.cpp
+        src/dynamixel_sdk/port_handler_linux.h
+        src/dynamixel_sdk/protocol1_packet_handler.cpp
+        src/dynamixel_sdk/protocol1_packet_handler.h
+        src/dynamixel_sdk/protocol2_packet_handler.cpp
+        src/dynamixel_sdk/protocol2_packet_handler.h
+        src/dynamixel_sdk.h
         )
 
 add_dependencies(${PROJECT_NAME} ${catkin_EXPORTED_TARGETS})
@@ -54,5 +72,5 @@ install(TARGETS ${PROJECT_NAME}
         ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
         LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
 
-install(FILES wm_robotiq_hw_plugin.xml
+install(FILES wm_dynamixel_hw_plugin.xml
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})

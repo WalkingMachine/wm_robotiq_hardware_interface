@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package>
-  <name>wm_robotiq_hardware_interface</name>
+  <name>wm_dynamixel_hardware_interface</name>
   <version>1.0.0</version>
   <description>The sara_arm package</description>
   <maintainer email="philippe.la-madeleine.1@ens.etsmtl.ca">PhilLM</maintainer>
@@ -29,8 +29,8 @@
   <build_depend>roscpp</build_depend>
   <run_depend>roscpp</run_depend>
 
-  <build_depend>robotiq_driver</build_depend>
-  <run_depend>robotiq_driver</run_depend>
+  <build_depend>dynamixel_driver</build_depend>
+  <run_depend>dynamixel_driver</run_depend>
 
   <build_depend>hardware_interface</build_depend>
   <run_depend>hardware_interface</run_depend>
@@ -41,9 +41,6 @@
   <build_depend>pluginlib</build_depend>
   <run_depend>pluginlib</run_depend>
 
-  <run_depend>robotiq_c_model_control</run_depend>
-  <build_depend>robotiq_c_model_control</build_depend>
-
   <build_depend>combined_robot_hw</build_depend>
 
   <run_depend>combined_robot_hw</run_depend>
@@ -51,6 +48,6 @@
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!-- Other tools can request additional information be placed here -->
-    <hardware_interface plugin="${prefix}/wm_robotiq_hw_plugin.xml"/>
+    <hardware_interface plugin="${prefix}/wm_dynamixel_hw_plugin.xml"/>
   </export>
 </package>
