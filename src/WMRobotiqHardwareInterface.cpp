@@ -3,7 +3,6 @@
 //
 
 #include "WMRobotiqHardwareInterface.h"
-#include "diagnostic_msgs/DiagnosticStatus.h"
 #include <nodelet/nodelet.h>
 
 namespace wm_robotiq_hardware_interface {
