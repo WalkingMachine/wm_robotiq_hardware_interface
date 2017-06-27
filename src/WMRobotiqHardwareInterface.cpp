@@ -6,10 +6,7 @@
 #include <nodelet/nodelet.h>
 
 namespace wm_robotiq_hardware_interface {
-    double *Pos;
-    void StatusCB( robotiq_c_model_control::CModel_robot_inputConstPtr msg ){
-        *Pos = msg->gPO;
-    }
+
 
     hardware_interface::PositionJointInterface WMRobotiqHardwareInterface::joint_position_interface_;
     hardware_interface::JointStateInterface    WMRobotiqHardwareInterface::joint_state_interface_;
@@ -31,7 +28,6 @@ namespace wm_robotiq_hardware_interface {
         vel = 0;
         eff = 0;
 
-
         // Register interfaces
         joint_state_interface_.registerHandle(JointStateHandle(Name, &pos, &vel, &eff));
         joint_position_interface_.registerHandle(JointHandle(joint_state_interface_.getHandle(Name), &cmd));
@@ -41,8 +37,7 @@ namespace wm_robotiq_hardware_interface {
         // advertise publisher
         GripperCtrlPub = robot_hw_nh.advertise<robotiq_c_model_control::CModel_robot_output>( "CModelRobotOutput", 1 );
         //GripperStatSub.
-        GripperStatSub = robot_hw_nh.subscribe( "CModelRobotInput", 1, StatusCB );
-        Pos = &pos;
+        GripperStatSub = robot_hw_nh.subscribe( "CModelRobotInput", 1, &WMRobotiqHardwareInterface::StatusCB, this);
 
         return true;
     }
@@ -59,6 +54,10 @@ namespace wm_robotiq_hardware_interface {
         msg.rPR = cmd;
         //pos = cmd;
         GripperCtrlPub.publish( msg );
+    }
+
+    void WMRobotiqHardwareInterface::StatusCB( robotiq_c_model_control::CModel_robot_inputConstPtr msg ){
+        pos = msg->gPO;
     }
 
 }

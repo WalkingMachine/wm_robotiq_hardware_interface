@@ -29,6 +29,7 @@ namespace wm_robotiq_hardware_interface
         double pos;
         double vel;
         double eff;
+        void StatusCB( robotiq_c_model_control::CModel_robot_inputConstPtr );
 
     private:
         // Variables
