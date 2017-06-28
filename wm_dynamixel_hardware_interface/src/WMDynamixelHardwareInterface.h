@@ -11,8 +11,8 @@
 #include <string>
 #include <ros/ros.h>
 #include <pluginlib/class_list_macros.h>
-#include <nodelet/nodelet.h>
-#include "dynamixel_sdk.h"
+//#include <nodelet/nodelet.h>
+//#include "dynamixel_sdk.h"
 
 namespace wm_dynamixel_hardware_interface
 {
@@ -38,23 +38,22 @@ namespace wm_dynamixel_hardware_interface
 		static hardware_interface::JointStateInterface joint_state_interface_;
 		
 		// Access to the Dynamixel controller
-		static dynamixel::PortHandler *portHandler;
-		static dynamixel::PacketHandler *packetHandler;
+		//static dynamixel::PortHandler *portHandler;
+		//static dynamixel::PacketHandler *packetHandler;
 		
 		// Parameters
 		int iId;
 		int iOffset;
 		
-		bool InitPort(const char *PortName, int BaudRate);
-		bool InitDynamixel();
-		
-		bool write1BDynamixel(int iAddress, int iValue);
-		bool write2BDynamixel(int iAddress, int iValue);
-		
-		int read1BDynamixel(int iAddress);
-		int read2BDynamixel(int iAddress);
-		
-		
+//		bool InitPort(const char *PortName, int BaudRate);
+//		bool InitDynamixel();
+//
+//		bool write1BDynamixel(int iAddress, int iValue);
+//		bool write2BDynamixel(int iAddress, int iValue);
+//
+//		//int read1BDynamixel(int iAddress);
+//		int read2BDynamixel(int iAddress);
+
 		};
 }
 #endif //PROJECT_WMDynamixelHardwareInterface_H
