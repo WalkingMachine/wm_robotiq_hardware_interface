@@ -10,7 +10,8 @@
 #include <hardware_interface/robot_hw.h>
 #include <string>
 #include <ros/ros.h>
-#include <robotiq_c_model_control/c_model_ethercat_client.h>
+#include <robotiq_85_msgs/GripperCmd.h>
+#include <robotiq_85_msgs/GripperStat.h>
 #include <pluginlib/class_list_macros.h>
 
 namespace wm_robotiq_hardware_interface
@@ -29,7 +30,7 @@ namespace wm_robotiq_hardware_interface
         double pos;
         double vel;
         double eff;
-        void StatusCB( robotiq_c_model_control::CModel_robot_inputConstPtr );
+        void StatusCB( robotiq_85_msgs::GripperStatConstPtr );
 
     private:
         // Variables

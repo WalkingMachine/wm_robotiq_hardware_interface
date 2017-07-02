@@ -35,7 +35,7 @@ namespace wm_robotiq_hardware_interface {
         registerInterface(&joint_position_interface_);
 
         // advertise publisher
-        GripperCtrlPub = robot_hw_nh.advertise<robotiq_c_model_control::CModel_robot_output>( "CModelRobotOutput", 1 );
+        GripperCtrlPub = robot_hw_nh.advertise<robotiq_85_msgs::GripperCmd>( "CModelRobotOutput", 1 );
         //GripperStatSub.
         GripperStatSub = robot_hw_nh.subscribe( "CModelRobotInput", 1, &WMRobotiqHardwareInterface::StatusCB, this);
 
@@ -46,18 +46,14 @@ namespace wm_robotiq_hardware_interface {
     }
 
     void WMRobotiqHardwareInterface::write(const ros::Time &time, const ros::Duration &period) {
-        robotiq_c_model_control::CModel_robot_output msg;
-        msg.rACT = 1;
-        msg.rGTO = 1;
-        msg.rSP = 200;
-        msg.rFR = 0;
-        msg.rPR = cmd;
-        //pos = cmd;
+        robotiq_85_msgs::GripperCmd msg;
+        msg.position = cmd;
         GripperCtrlPub.publish( msg );
     }
 
-    void WMRobotiqHardwareInterface::StatusCB( robotiq_c_model_control::CModel_robot_inputConstPtr msg ){
-        pos = msg->gPO;
+    void WMRobotiqHardwareInterface::StatusCB( robotiq_85_msgs::GripperStatConstPtr msg ){
+        pos = msg->position;
+        eff = msg->current;
     }
 
 }
