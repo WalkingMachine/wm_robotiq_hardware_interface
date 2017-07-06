@@ -20,7 +20,7 @@ namespace wm_robotiq_hardware_interface {
         std::vector<std::string> Joints;
         if (!robot_hw_nh.getParam("joints", Joints)) { return false; }
         Name = Joints[0];
-        if (!robot_hw_nh.getParam("port", port)) { return false; }
+        robot_hw_nh.getParam("port", port);
 
         // Initialise interface variables
         cmd = 0;
@@ -35,9 +35,9 @@ namespace wm_robotiq_hardware_interface {
         registerInterface(&joint_position_interface_);
 
         // advertise publisher
-        GripperCtrlPub = robot_hw_nh.advertise<robotiq_85_msgs::GripperCmd>( "CModelRobotOutput", 1 );
+        GripperCtrlPub = root_nh.advertise<robotiq_85_msgs::GripperCmd>( "gripper/cmd", 1 );
         //GripperStatSub.
-        GripperStatSub = robot_hw_nh.subscribe( "CModelRobotInput", 1, &WMRobotiqHardwareInterface::StatusCB, this);
+        GripperStatSub = root_nh.subscribe( "gripper/stat", 1, &WMRobotiqHardwareInterface::StatusCB, this);
 
         return true;
     }
@@ -47,7 +47,7 @@ namespace wm_robotiq_hardware_interface {
 
     void WMRobotiqHardwareInterface::write(const ros::Time &time, const ros::Duration &period) {
         robotiq_85_msgs::GripperCmd msg;
-        msg.position = cmd;
+        msg.position = (float)cmd;
         GripperCtrlPub.publish( msg );
     }
 
