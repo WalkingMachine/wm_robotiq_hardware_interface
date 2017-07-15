@@ -11,7 +11,6 @@ find_package(catkin REQUIRED COMPONENTS
     controller_manager
     hardware_interface
     roscpp
-    robotiq_c_model_control
 )
 
 ## System dependencies are found with CMake's conventions
