@@ -41,9 +41,6 @@
   <build_depend>pluginlib</build_depend>
   <run_depend>pluginlib</run_depend>
 
-  <run_depend>robotiq_c_model_control</run_depend>
-  <build_depend>robotiq_c_model_control</build_depend>
-
   <build_depend>combined_robot_hw</build_depend>
   <run_depend>combined_robot_hw</run_depend>
 
