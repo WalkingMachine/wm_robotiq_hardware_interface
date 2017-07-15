@@ -10,6 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
     combined_robot_hw
     controller_manager
     hardware_interface
+    robotiq_85_msgs
     roscpp
 )
 
