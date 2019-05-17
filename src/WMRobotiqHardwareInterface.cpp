@@ -48,6 +48,8 @@ namespace wm_robotiq_hardware_interface {
     void WMRobotiqHardwareInterface::write(const ros::Time &time, const ros::Duration &period) {
         robotiq_85_msgs::GripperCmd msg;
         msg.position = (float)cmd;
+        msg.force = 255.0f
+        msg.speed = 255.0f
         GripperCtrlPub.publish( msg );
     }
 
